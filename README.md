@@ -1,6 +1,30 @@
-This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
+This project is for the react udactity class and was created using [Create React Native App](https://github.com/react-community/create-react-native-app) ( create-react-native-app mobile-flashcards)
 
-Below you'll find information about performing common tasks. The most recent version of this guide is available [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).
+These are some of the most common things to do:
+
+  yarn start
+    Starts the development server so you can open your app in the Expo
+    app on your phone.
+
+  yarn run ios
+    (Mac only, requires Xcode)
+    Starts the development server and loads your app in an iOS simulator.
+
+  yarn run android
+    (Requires Android build tools)
+    Starts the development server and loads your app on a connected Android
+    device or emulator.
+  
+
+  yarn test
+    Starts the test runner.
+
+  yarn run eject
+    Removes this tool and copies build dependencies, configuration files
+    and scripts into the app directory. If you do this, you can’t go back!
+
+In addition below you'll find information about performing common tasks. The most recent version of this guide is available [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).
+
 
 ## Table of Contents
 
