@@ -2,6 +2,7 @@ import React, { Component }  from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { connect } from 'react-redux'
 
+
 const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -11,7 +12,7 @@ const styles = StyleSheet.create({
     },
   });
 
-class FlashView extends Component {
+class DeckListView extends Component {
 
     state = {
         run: 0,
@@ -44,5 +45,5 @@ function mapStateToProps (state) {
   
   export default connect(
     mapStateToProps
-  )(FlashView)
+  )(DeckListView)
 
