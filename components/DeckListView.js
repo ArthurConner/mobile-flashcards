@@ -16,31 +16,64 @@ class DeckListView extends Component {
 
     
 
-      _onPress(x){
-
-      }
-
-       state = {data:[{key: 'a',title:'bar'}, {key: 'b',title:'foo'}]}
-
+  static navigationOptions = ({ navigation }) => ({
+    title: `Decks`,
+     headerTitleStyle : {textAlign: 'center',alignSelf:'center'},
+        headerStyle:{
+            backgroundColor:'white',
+        },
+    });
+ 
   render() {
      // const titleList = timeblah()
      //
+
+     let  state = {data:[
+      {
+        title: 'React',
+        key: 'React',
+        questions: [
+          {
+            question: 'What is React?',
+            answer: 'A library for managing user interfaces'
+          },
+          {
+            question: 'Where do you make Ajax requests in React?',
+            answer: 'The componentDidMount lifecycle event'
+          }
+        ]
+      },
+      {
+        key: 'JavaScript',
+        title: 'JavaScript',
+        questions: [
+          {
+            question: 'What is a closure?',
+            answer: 'The combination of a function and the lexical environment within which that function was declared.'
+          }
+        ]
+      }
+    ]
+    }
+
 
      let {data} = state
    
 
     return (
       <View style={styles.container} >
-        <Text>This was my start. Ella fitz. See if it works</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-
+       
   <FlatList
   data={data}
   renderItem={({item}) => <View>
-    <TouchableOpacity onPress={this._onPress}>
-    <Text>{item.key}</Text>
+   <TouchableOpacity
+            onPress={() => this.props.navigation.navigate(
+              'IndividualDeckView',
+              { entryId: item.title}
+            )}
+          >
     <Text>{item.title}</Text>
+    <Text>{item.questions.length} cards</Text>
     </TouchableOpacity>
     </View>
   

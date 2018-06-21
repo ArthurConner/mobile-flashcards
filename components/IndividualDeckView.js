@@ -28,6 +28,7 @@ class DeckView extends Component {
     return (
       <View >
         <Text>This is an individual view</Text>
+        <Text>Entry Detail - {JSON.stringify(this.props.navigation.state.params.entryId.title)}</Text>
       </View>
     );
   }
