@@ -8,7 +8,7 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducer from './reducers'
 import {StackNavigator} from 'react-navigation'
-
+import {blue, purple} from './utils/colors'
 import { Constants } from 'expo'
 
 function UdaciStatusBar ({backgroundColor, ...props}) {
@@ -21,16 +21,7 @@ function UdaciStatusBar ({backgroundColor, ...props}) {
 
 const MainNavigator = StackNavigator({
   Home: {
-    screen: IndividualDeckView,
-  },
-  EntryDetail: {
-    screen: IndividualDeckView,
-    navigationOptions: {
-      headerTintColor: white,
-      headerStyle: {
-        backgroundColor: purple,
-      }
-    }
+    screen: DeckListView,
   }
 })
 
@@ -41,7 +32,6 @@ export default class App extends React.Component {
         <View style={{flex: 1}}>
         <UdaciStatusBar backgroundColor={purple} barStyle="light-content" />
         <MainNavigator />
-          <DeckListView />
         </View>
       </Provider>
     )

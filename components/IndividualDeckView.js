@@ -27,9 +27,7 @@ class DeckView extends Component {
      //style={styles.container}
     return (
       <View >
-        <Text>This is my start.</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
+        <Text>This is an individual view</Text>
       </View>
     );
   }

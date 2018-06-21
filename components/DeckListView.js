@@ -1,12 +1,12 @@
 import React, { Component }  from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, FlatList } from 'react-native';
 import { connect } from 'react-redux'
-
+import {  TouchableOpacity } from 'react-native'
 
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: 'green',
+      backgroundColor: 'white',
       alignItems: 'center',
       justifyContent: 'center',
     },
@@ -14,22 +14,38 @@ const styles = StyleSheet.create({
 
 class DeckListView extends Component {
 
-    state = {
-        run: 0,
-        bike: 0,
-        swim: 0,
-        sleep: 0,
-        eat: 0,
+    
+
+      _onPress(x){
+
       }
 
+       state = {data:[{key: 'a',title:'bar'}, {key: 'b',title:'foo'}]}
+
   render() {
-     // const bar = timeblah()
-     //style={styles.container}
+     // const titleList = timeblah()
+     //
+
+     let {data} = state
+   
+
     return (
-      <View >
-        <Text>This is my start.</Text>
+      <View style={styles.container} >
+        <Text>This was my start. Ella fitz. See if it works</Text>
         <Text>Changes you make will automatically reload.</Text>
         <Text>Shake your phone to open the developer menu.</Text>
+
+  <FlatList
+  data={data}
+  renderItem={({item}) => <View>
+    <TouchableOpacity onPress={this._onPress}>
+    <Text>{item.key}</Text>
+    <Text>{item.title}</Text>
+    </TouchableOpacity>
+    </View>
+  
+  }
+/>
       </View>
     );
   }
@@ -46,4 +62,3 @@ function mapStateToProps (state) {
   export default connect(
     mapStateToProps
   )(DeckListView)
-
