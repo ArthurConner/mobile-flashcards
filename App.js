@@ -10,6 +10,8 @@ import reducer from './reducers'
 import {StackNavigator} from 'react-navigation'
 import {blue, purple} from './utils/colors'
 import { Constants } from 'expo'
+import QuizView from './components/QuizView'
+import NewQuestionView from './components/NewQuestionView'
 
 function UdaciStatusBar ({backgroundColor, ...props}) {
   return (
@@ -26,7 +28,14 @@ const MainNavigator = StackNavigator({
   },
   IndividualDeckView : {
     screen: IndividualDeckView,
+  },
+  QuizView : {
+    screen: QuizView
+  },
+  NewQuestionView : {
+    screen: NewQuestionView
   }
+
 })
 
 export default class App extends React.Component {
