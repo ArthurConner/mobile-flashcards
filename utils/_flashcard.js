@@ -1,2 +1,1 @@
-
-export const FLASHCARD_STORAGE_KEY = 'mflashcard:cards'
+export const FLASHCARD_STORAGE_KEY = "mflashcard:cards";

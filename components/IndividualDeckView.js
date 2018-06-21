@@ -1,122 +1,117 @@
-import React, { Component }  from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { connect } from 'react-redux'
-import { Button , TouchableHighlight} from 'react-native';
+import React, { Component } from "react";
+import { StyleSheet, Text, View } from "react-native";
+import { connect } from "react-redux";
+import { Button, TouchableHighlight } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "white",
+    alignItems: "center",
+    justifyContent: "center"
   },
   separator: {
     height: 0.5,
     width: "80%",
-    alignSelf: 'center',
+    alignSelf: "center",
     backgroundColor: "#555"
   },
   h2text: {
     marginTop: 10,
-    fontFamily: 'Helvetica',
+    fontFamily: "Helvetica",
     fontSize: 36,
-    fontWeight: 'bold',
+    fontWeight: "bold"
   },
   flatview: {
-    justifyContent: 'center',
+    justifyContent: "center",
     paddingTop: 30,
-    borderRadius: 2,
+    borderRadius: 2
   },
   name: {
-    fontFamily: 'Verdana',
+    fontFamily: "Verdana",
     fontSize: 18
   },
   email: {
-    color: 'gray'
+    color: "gray"
   },
-  submit:{
-    marginRight:40,
-    marginLeft:40,
-    marginTop:10,
-    paddingTop:20,
-    paddingBottom:20,
-    backgroundColor:'black',
-    borderRadius:10,
+  submit: {
+    marginRight: 40,
+    marginLeft: 40,
+    marginTop: 10,
+    paddingTop: 20,
+    paddingBottom: 20,
+    backgroundColor: "black",
+    borderRadius: 10,
     borderWidth: 1,
-    borderColor: '#fff'
+    borderColor: "#fff"
   },
-  submitText:{
-      color:'white',
-      textAlign:'center',
+  submitText: {
+    color: "white",
+    textAlign: "center"
   },
 
-  addCard:{
-    marginRight:40,
-    marginLeft:40,
-    marginTop:10,
-    paddingTop:20,
-    paddingBottom:20,
-    backgroundColor:'white',
-    borderRadius:10,
+  addCard: {
+    marginRight: 40,
+    marginLeft: 40,
+    marginTop: 10,
+    paddingTop: 20,
+    paddingBottom: 20,
+    backgroundColor: "white",
+    borderRadius: 10,
     borderWidth: 1,
-    borderColor: '#fff',
-    overflow: 'hidden'
+    borderColor: "#fff",
+    overflow: "hidden"
   }
-
 });
 
 class DeckView extends Component {
-
-  
+  static navigationOptions = ({ navigation }) => ({
+    title: `Deck`,
+    headerTitleStyle: { textAlign: "center", alignSelf: "center" },
+    headerStyle: {
+      backgroundColor: "white"
+    }
+  });
 
   render() {
-      const item =this.props.navigation.state.params.entryId
-     //style={styles.container}
+    const item = this.props.navigation.state.params.entryId;
+    //style={styles.container}
     return (
-      <View style={styles.container} >
-      <Text style={styles.name}>{item.title}</Text>
-      <Text style={styles.email} >{item.questions.length} cards</Text>
-  
+      <View style={styles.container}>
+        <Text style={styles.name}>{item.title}</Text>
+        <Text style={styles.email}>{item.questions.length} cards</Text>
 
-<TouchableHighlight
-  style={styles.addCard}
-  onPress={() => {
-    console.log("clicked on new question")
-    this.props.navigation.navigate(
-    'NewQuestionView',
-    { entryId: item}
-  )
-}}
+        <TouchableHighlight
+          style={styles.addCard}
+          onPress={() => {
+            console.log("clicked on new question");
+            this.props.navigation.navigate("NewQuestionView", {
+              entryId: item
+            });
+          }}
+        >
+          <Text>Add Card</Text>
+        </TouchableHighlight>
 
-
->
-    <Text >Add Card</Text>
-</TouchableHighlight>
-
-<TouchableHighlight
-  style={styles.submit}
-  onPress={() => this.props.navigation.navigate(
-    'QuizView',
-    { entryId: item}
-  )}
-  >
-    <Text style={styles.submitText}>Take Quiz</Text>
-</TouchableHighlight>
-
-    </View>
+        <TouchableHighlight
+          style={styles.submit}
+          onPress={() =>
+            this.props.navigation.navigate("QuizView", { entryId: item })
+          }
+        >
+          <Text style={styles.submitText}>Take Quiz</Text>
+        </TouchableHighlight>
+      </View>
     );
   }
 }
 
-function mapStateToProps (state) {
-   // const key = timeToString()
-   const key = "foo"
-    return {
-      alreadyLogged: state[key] && typeof state[key].today === 'undefined'
-    }
-  }
-  
-  export default connect(
-    mapStateToProps
-  )(DeckView)
+function mapStateToProps(state) {
+  // const key = timeToString()
+  const key = "foo";
+  return {
+    alreadyLogged: state[key] && typeof state[key].today === "undefined"
+  };
+}
 
+export default connect(mapStateToProps)(DeckView);
