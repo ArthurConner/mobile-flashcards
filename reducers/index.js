@@ -1,6 +1,36 @@
 import { RECEIVE_ENTRIES, ADD_ENTRY } from "../actions";
 
-function entries(state = {}, action) {
+const intialState = {
+  data: [
+    {
+      title: "React",
+      key: "React",
+      questions: [
+        {
+          question: "What is React?",
+          answer: "A library for managing user interfaces"
+        },
+        {
+          question: "Where do you make Ajax requests in React?",
+          answer: "The componentDidMount lifecycle event"
+        }
+      ]
+    },
+    {
+      key: "JavaScript",
+      title: "JavaScript",
+      questions: [
+        {
+          question: "What is a closure?",
+          answer:
+            "The combination of a function and the lexical environment within which that function was declared."
+        }
+      ]
+    }
+  ]
+};
+
+function entries(state = intialState, action) {
   switch (action.type) {
     case RECEIVE_ENTRIES:
       return {

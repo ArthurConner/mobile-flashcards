@@ -37,35 +37,7 @@ const styles = StyleSheet.create({
 });
 
 class DeckListView extends Component {
-  state = {
-    data: [
-      {
-        title: "React",
-        key: "React",
-        questions: [
-          {
-            question: "What is React?",
-            answer: "A library for managing user interfaces"
-          },
-          {
-            question: "Where do you make Ajax requests in React?",
-            answer: "The componentDidMount lifecycle event"
-          }
-        ]
-      },
-      {
-        key: "JavaScript",
-        title: "JavaScript",
-        questions: [
-          {
-            question: "What is a closure?",
-            answer:
-              "The combination of a function and the lexical environment within which that function was declared."
-          }
-        ]
-      }
-    ]
-  };
+  state = {};
 
   static navigationOptions = ({ navigation }) => ({
     title: `Decks`,
@@ -83,7 +55,7 @@ class DeckListView extends Component {
     // const titleList = timeblah()
     //
 
-    let { data } = this.state;
+    let { data } = this.props;
 
     return (
       <View style={styles.container}>
@@ -112,9 +84,10 @@ class DeckListView extends Component {
 
 function mapStateToProps(state) {
   // const key = timeToString()
+  console.log(state);
   const key = "foo";
   return {
-    alreadyLogged: state[key] && typeof state[key].today === "undefined"
+    data: state["data"]
   };
 }
 

@@ -125,6 +125,13 @@ class QuizView extends Component {
           >
             <Text style={styles.submitText}>Retake</Text>
           </TouchableHighlight>
+
+          <TouchableHighlight
+            style={styles.submit}
+            onPress={() => this.props.navigation.goBack()}
+          >
+            <Text style={styles.submitText}>Go Back to Deck</Text>
+          </TouchableHighlight>
         </View>
       );
     }
