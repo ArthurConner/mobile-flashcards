@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View, FlatList } from "react-native";
 import { connect } from "react-redux";
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, TouchableHighlight } from "react-native";
 import { getDecks } from "../utils/api";
 
 const styles = StyleSheet.create({
@@ -34,6 +34,18 @@ const styles = StyleSheet.create({
   },
   email: {
     color: "gray"
+  },
+  submit: {
+    height: 40,
+    width: "80%",
+    backgroundColor: "lightgray",
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: "#fff"
+  },
+  submitText: {
+    color: "black",
+    textAlign: "center"
   }
 });
 
@@ -60,6 +72,13 @@ class DeckListView extends Component {
 
     return (
       <View style={styles.container}>
+        <TouchableHighlight
+          style={styles.submit}
+          onPress={() => this.props.navigation.navigate("NewDeckView")}
+        >
+          <Text style={styles.submitText}>Add Deck</Text>
+        </TouchableHighlight>
+
         <FlatList
           data={data}
           ItemSeparatorComponent={this.renderSeparator.bind(this)}

@@ -1,4 +1,5 @@
 import { RECEIVE_ENTRIES, ADD_CARD, ADD_DECK } from "../actions";
+import { getDeck } from "../utils/api";
 
 const intialState = {
   data: [
@@ -40,12 +41,24 @@ function entries(state = intialState, action) {
         ...action.entries
       };
     case ADD_CARD:
-      let nextState = { ...state };
+      let nextDecks = state.data.filter(x => {
+        return x.key !== key;
+      });
+      let addDeck = { ...getDeck({ id: key, state: state }) };
+      const { question, answer } = action;
+      addDeck.questions.push({ question, answer });
+      nextDecks.push(addDeck);
 
-      return {
-        ...state,
-        ...action.entry
-      };
+      let nextState = { ...state, data: nextDecks };
+
+      return nextState;
+
+    case ADD_DECK:
+      let addDecks = [...state.data];
+      let { title } = action;
+      addDecks.push({ key, title, questions: [] });
+      return { ...state, data: addDecks };
+
     default:
       return state;
   }

@@ -38,17 +38,23 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: "green"
   },
-  submit: {
-    marginRight: 40,
-    marginLeft: 40,
-    marginTop: 10,
-    paddingTop: 20,
-    paddingBottom: 20,
-    backgroundColor: "black",
+  correctQ: {
+    height: 50,
+    width: "90%",
+    backgroundColor: "green",
     borderRadius: 10,
     borderWidth: 1,
     borderColor: "#fff"
   },
+  incorrectQ: {
+    height: 50,
+    width: "90%",
+    backgroundColor: "red",
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: "#fff"
+  },
+
   submitText: {
     color: "white",
     textAlign: "center"
@@ -160,16 +166,16 @@ class QuizView extends Component {
         </TouchableHighlight>
 
         <TouchableHighlight
-          style={styles.addCard}
+          style={styles.correctQ}
           onPress={() => {
             this.correctAnswer();
           }}
         >
-          <Text>Correct</Text>
+          <Text style={styles.submitText}>Correct</Text>
         </TouchableHighlight>
 
         <TouchableHighlight
-          style={styles.submit}
+          style={styles.incorrectQ}
           onPress={() => this.badAnswer()}
         >
           <Text style={styles.submitText}>Incorrect</Text>

@@ -20,7 +20,8 @@ export function addDeck({ key, title }) {
 export function addCard({ key, question, answer }) {
   return {
     type: ADD_CARD,
-    key,
-    title
+    question,
+    answer,
+    key
   };
 }

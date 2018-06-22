@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { connect } from "react-redux";
 import { addCard } from "../actions";
-import { Button, TouchableHighlight } from "react-native";
+import { TouchableHighlight, TextInput } from "react-native";
 import { getDeck } from "../utils/api";
 
 const styles = StyleSheet.create({
@@ -12,30 +12,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center"
   },
-  separator: {
-    height: 0.5,
-    width: "80%",
-    alignSelf: "center",
-    backgroundColor: "#555"
-  },
-  h2text: {
-    marginTop: 10,
-    fontFamily: "Helvetica",
-    fontSize: 36,
-    fontWeight: "bold"
-  },
-  flatview: {
-    justifyContent: "center",
-    paddingTop: 30,
-    borderRadius: 2
-  },
-  name: {
-    fontFamily: "Verdana",
-    fontSize: 18
-  },
-  email: {
-    color: "gray"
-  },
+
   submit: {
     marginRight: 40,
     marginLeft: 40,
@@ -45,34 +22,55 @@ const styles = StyleSheet.create({
     backgroundColor: "black",
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: "#fff"
+    borderColor: "#fff",
+    width: "90%"
+  },
+  TextInputStyle: {
+    textAlign: "center",
+    height: 50,
+    width: "90%",
+    borderColor: "gray",
+    borderWidth: 1
   },
   submitText: {
     color: "white",
     textAlign: "center"
-  },
-
-  addCard: {
-    marginRight: 40,
-    marginLeft: 40,
-    marginTop: 10,
-    paddingTop: 20,
-    paddingBottom: 20,
-    backgroundColor: "white",
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: "#fff",
-    overflow: "hidden"
   }
 });
 
 class DeckView extends Component {
+  state = { question: "", answer: "" };
   render() {
     const { item } = this.props;
     //style={styles.container}
     return (
       <View style={styles.container}>
         <Text>New Question for {item.title} </Text>
+        <TextInput
+          style={styles.TextInputStyle}
+          onChangeText={text => this.setState({ question: text })}
+          value={this.state.question}
+        />
+        <Text>Answer </Text>
+
+        <TextInput
+          style={styles.TextInputStyle}
+          onChangeText={text => this.setState({ answer: text })}
+          value={this.state.answer}
+        />
+        <TouchableHighlight
+          style={styles.submit}
+          onPress={() => {
+            this.props.addCard({
+              key: item.key,
+              question: this.state.question,
+              answer: this.state.answer
+            });
+            this.props.navigation.goBack();
+          }}
+        >
+          <Text style={styles.submitText}>Save</Text>
+        </TouchableHighlight>
       </View>
     );
   }

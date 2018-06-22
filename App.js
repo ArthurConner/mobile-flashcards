@@ -10,6 +10,7 @@ import { blue, purple } from "./utils/colors";
 import { Constants } from "expo";
 import QuizView from "./components/QuizView";
 import NewQuestionView from "./components/NewQuestionView";
+import NewDeckView from "./components/NewDeckView";
 
 function UdaciStatusBar({ backgroundColor, ...props }) {
   return (
@@ -32,6 +33,9 @@ const MainNavigator = StackNavigator({
   },
   NewQuestionView: {
     screen: NewQuestionView
+  },
+  NewDeckView: {
+    screen: NewDeckView
   }
 });
 

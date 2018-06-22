@@ -35,11 +35,8 @@ const styles = StyleSheet.create({
     color: "gray"
   },
   submit: {
-    marginRight: 40,
-    marginLeft: 40,
-    marginTop: 10,
-    paddingTop: 20,
-    paddingBottom: 20,
+    height: 40,
+    width: "80%",
     backgroundColor: "black",
     borderRadius: 10,
     borderWidth: 1,
@@ -51,16 +48,16 @@ const styles = StyleSheet.create({
   },
 
   addCard: {
-    marginRight: 40,
-    marginLeft: 40,
-    marginTop: 10,
-    paddingTop: 20,
-    paddingBottom: 20,
-    backgroundColor: "white",
+    height: 40,
+    width: "80%",
+    backgroundColor: "gray",
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: "#fff",
-    overflow: "hidden"
+    borderColor: "#fff"
+  },
+  addText: {
+    color: "white",
+    textAlign: "center"
   }
 });
 
@@ -90,7 +87,7 @@ class DeckView extends Component {
             });
           }}
         >
-          <Text>Add Card</Text>
+          <Text style={styles.addText}>Add Card</Text>
         </TouchableHighlight>
 
         <TouchableHighlight
