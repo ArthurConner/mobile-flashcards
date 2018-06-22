@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { StyleSheet, Text, View, FlatList } from "react-native";
 import { connect } from "react-redux";
 import { TouchableOpacity, TouchableHighlight } from "react-native";
-import { getDecks } from "../utils/api";
+import { getDecks, loadDecksFromStore } from "../utils/api";
+import { receiveEntries } from "../actions";
 
 const styles = StyleSheet.create({
   container: {
@@ -13,7 +14,7 @@ const styles = StyleSheet.create({
   },
   separator: {
     height: 0.5,
-    width: "80%",
+    width: "120%",
     alignSelf: "center",
     backgroundColor: "#555"
   },
@@ -59,6 +60,16 @@ class DeckListView extends Component {
       backgroundColor: "white"
     }
   });
+
+  componentDidMount() {
+    console.log("we are being launched");
+    loadDecksFromStore((error, result) => {
+      const entries = JSON.parse(result);
+      console.log("we are back".error, entries);
+
+      this.props.receiveEntries({ entries });
+    });
+  }
 
   renderSeparator() {
     return <View style={styles.separator} />;
@@ -108,4 +119,13 @@ function mapStateToProps(state) {
   return getDecks({ state });
 }
 
-export default connect(mapStateToProps)(DeckListView);
+function mapDispatchToProps(dispatch) {
+  return {
+    receiveEntries: data => dispatch(receiveEntries(data))
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(DeckListView);
