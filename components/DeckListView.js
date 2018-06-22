@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { StyleSheet, Text, View, FlatList } from "react-native";
 import { connect } from "react-redux";
 import { TouchableOpacity } from "react-native";
+import { getDecks } from "../utils/api";
 
 const styles = StyleSheet.create({
   container: {
@@ -67,7 +68,7 @@ class DeckListView extends Component {
               <TouchableOpacity
                 onPress={() =>
                   this.props.navigation.navigate("IndividualDeckView", {
-                    entryId: item
+                    entryId: item.key
                   })
                 }
               >
@@ -84,11 +85,8 @@ class DeckListView extends Component {
 
 function mapStateToProps(state) {
   // const key = timeToString()
-  console.log(state);
-  const key = "foo";
-  return {
-    data: state["data"]
-  };
+
+  return getDecks({ state });
 }
 
 export default connect(mapStateToProps)(DeckListView);

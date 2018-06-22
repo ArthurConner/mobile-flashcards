@@ -1,4 +1,4 @@
-import { RECEIVE_ENTRIES, ADD_ENTRY } from "../actions";
+import { RECEIVE_ENTRIES, ADD_CARD, ADD_DECK } from "../actions";
 
 const intialState = {
   data: [
@@ -31,13 +31,17 @@ const intialState = {
 };
 
 function entries(state = intialState, action) {
+  const { key } = action;
+
   switch (action.type) {
     case RECEIVE_ENTRIES:
       return {
         ...state,
         ...action.entries
       };
-    case ADD_ENTRY:
+    case ADD_CARD:
+      let nextState = { ...state };
+
       return {
         ...state,
         ...action.entry

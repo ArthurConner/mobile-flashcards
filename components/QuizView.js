@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { StyleSheet, Text, View, Animated } from "react-native";
 import { connect } from "react-redux";
 import { TouchableHighlight } from "react-native";
+import { getDeck } from "../utils/api";
 
 const styles = StyleSheet.create({
   container: {
@@ -107,7 +108,7 @@ class QuizView extends Component {
   }
 
   render() {
-    const item = this.props.navigation.state.params.entryId;
+    const { item } = this.props;
     //style={styles.container}
     const questions = item["questions"];
 
@@ -178,11 +179,13 @@ class QuizView extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  // const key = timeToString()
-  const key = "foo";
+function mapStateToProps(state, ownprops) {
+  const item = getDeck({
+    state: state,
+    id: ownprops.navigation.state.params.entryId
+  });
   return {
-    alreadyLogged: state[key] && typeof state[key].today === "undefined"
+    item
   };
 }
 

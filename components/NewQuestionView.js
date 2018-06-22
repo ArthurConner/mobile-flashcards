@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { connect } from "react-redux";
+import { addCard } from "../actions";
 import { Button, TouchableHighlight } from "react-native";
+import { getDeck } from "../utils/api";
 
 const styles = StyleSheet.create({
   container: {
@@ -66,22 +68,34 @@ const styles = StyleSheet.create({
 
 class DeckView extends Component {
   render() {
-    const item = this.props.navigation.state.params.entryId;
+    const { item } = this.props;
     //style={styles.container}
     return (
       <View style={styles.container}>
-        <Text>New Question View </Text>
+        <Text>New Question for {item.title} </Text>
       </View>
     );
   }
 }
 
-function mapStateToProps(state) {
-  // const key = timeToString()
-  const key = "foo";
+function mapStateToProps(state, ownprops) {
+  const item = getDeck({
+    state: state,
+    id: ownprops.navigation.state.params.entryId
+  });
+
   return {
-    alreadyLogged: state[key] && typeof state[key].today === "undefined"
+    item
   };
 }
 
-export default connect(mapStateToProps)(DeckView);
+function mapDispatchToProps(dispatch) {
+  return {
+    addCard: data => dispatch(addCard(data))
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(DeckView);

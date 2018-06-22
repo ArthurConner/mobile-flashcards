@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { connect } from "react-redux";
 import { Button, TouchableHighlight } from "react-native";
-
+import { getDeck } from "../utils/api";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -74,7 +74,7 @@ class DeckView extends Component {
   });
 
   render() {
-    const item = this.props.navigation.state.params.entryId;
+    const { item } = this.props; //this.props.navigation.state.params.entryId;
     //style={styles.container}
     return (
       <View style={styles.container}>
@@ -86,7 +86,7 @@ class DeckView extends Component {
           onPress={() => {
             console.log("clicked on new question");
             this.props.navigation.navigate("NewQuestionView", {
-              entryId: item
+              entryId: item.key
             });
           }}
         >
@@ -96,7 +96,7 @@ class DeckView extends Component {
         <TouchableHighlight
           style={styles.submit}
           onPress={() =>
-            this.props.navigation.navigate("QuizView", { entryId: item })
+            this.props.navigation.navigate("QuizView", { entryId: item.key })
           }
         >
           <Text style={styles.submitText}>Take Quiz</Text>
@@ -106,11 +106,14 @@ class DeckView extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  // const key = timeToString()
-  const key = "foo";
+function mapStateToProps(state, ownprops) {
+  const item = getDeck({
+    state: state,
+    id: ownprops.navigation.state.params.entryId
+  });
+
   return {
-    alreadyLogged: state[key] && typeof state[key].today === "undefined"
+    item
   };
 }
 
