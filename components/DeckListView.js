@@ -61,14 +61,12 @@ class DeckListView extends Component {
     }
   });
 
-  componentDidMount() {
-    console.log("we are being launched");
-    loadDecksFromStore((error, result) => {
-      const entries = JSON.parse(result);
-      console.log("we are back".error, entries);
+  gotDecks = ({ decklist }) => {
+    this.props.receiveEntries({ decklist });
+  };
 
-      this.props.receiveEntries({ entries });
-    });
+  componentDidMount() {
+    loadDecksFromStore({ cb: this.gotDecks });
   }
 
   renderSeparator() {

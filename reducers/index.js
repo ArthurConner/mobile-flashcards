@@ -31,15 +31,40 @@ const intialState = {
   ]
 };
 
+function mergelist(first, second) {
+  var lookUp = {};
+
+  for (var i = 0; i < first.length; i++) {
+    let x = first[i];
+    lookUp[x.key] = x;
+  }
+
+  for (var i = 0; i < second.length; i++) {
+    let x = second[i];
+    lookUp[x.key] = x;
+  }
+
+  var ret = [];
+  for (var key in lookUp) {
+    ret.push(lookUp[key]);
+  }
+
+  return ret;
+}
+
 function entries(state = intialState, action) {
   const { key } = action;
 
   switch (action.type) {
     case RECEIVE_ENTRIES:
+      let { decklist } = action;
+
+      let data = mergelist(state.data, decklist);
       return {
         ...state,
-        data: action.entries
+        data
       };
+
     case ADD_CARD:
       let nextDecks = state.data.filter(x => {
         return x.key !== key;

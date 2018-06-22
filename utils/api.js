@@ -19,8 +19,18 @@ export function removeEntry(key) {
   });
 }
 
+let callback = null;
+
+export function deckCB(results) {
+  let dataStore = JSON.parse(results);
+  let decklist = dataStore["decks"];
+  let sig = { decklist };
+  callback(sig);
+}
+
 export function loadDecksFromStore({ cb }) {
-  return AsyncStorage.getItem(FLASHCARD_STORAGE_KEY).then(cb);
+  callback = cb;
+  return AsyncStorage.getItem(FLASHCARD_STORAGE_KEY).then(deckCB);
 }
 export function saveDecksToStore({ decks }) {
   console.log("going to save", decks);
