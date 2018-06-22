@@ -2,7 +2,11 @@ import React, { Component } from "react";
 import { StyleSheet, Text, View, Animated } from "react-native";
 import { connect } from "react-redux";
 import { TouchableHighlight } from "react-native";
-import { getDeck } from "../utils/api";
+import {
+  getDeck,
+  setLocalNotification,
+  clearLocalNotification
+} from "../utils/api";
 
 const styles = StyleSheet.create({
   container: {
@@ -88,6 +92,10 @@ class QuizView extends Component {
     correctCount: 0,
     isShowingQuestion: true
   };
+
+  componentDidMount() {
+    clearLocalNotification().then(setLocalNotification);
+  }
 
   resetQuiz() {
     this.setState({

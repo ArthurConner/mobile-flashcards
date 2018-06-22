@@ -61,7 +61,7 @@ class DeckView extends Component {
             this.props.navigation.goBack();
           }}
         >
-          <Text style={styles.submitText}>Save</Text>
+          <Text style={styles.submitText}>Create Deck</Text>
         </TouchableHighlight>
       </View>
     );

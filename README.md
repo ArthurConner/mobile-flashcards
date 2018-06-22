@@ -23,8 +23,16 @@ These are some of the most common things to do:
     Removes this tool and copies build dependencies, configuration files
     and scripts into the app directory. If you do this, you can’t go back!
 
+  yarn prettier
+    This reformats all of the code. A must for figuring out calling depth
+
 In addition below you'll find information about performing common tasks. The most recent version of this guide is available [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).
 
+
+The project was tested only in the ios emulator
+
+## Thoughts
+I think the best part was using redux in a mobile app. Javascript definitely has it issues and I probably could do more design ui, but it is simple
 
 ## Table of Contents
 
